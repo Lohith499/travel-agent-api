@@ -21,7 +21,7 @@ end
 # POST /customers/:customer_id/vacations
 def create
 @customer.vacations.create!(vacation_params)
-json_response(@vacation, :created)
+json_response(@customer, :created)
 end
 # PUT /customers/:customer_id/vacations/:id
 def update
