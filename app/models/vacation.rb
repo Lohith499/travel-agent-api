@@ -4,6 +4,6 @@ class Vacation < ApplicationRecord
   validates :Date, presence: true
   validates :Description, presence: true, length: {minimun: 20, maximum: 600}
   validates :Budget, presence: true
-  validates :Transport, status: true
+  validates :Transport, presence: true
   belongs_to :customer
 end
