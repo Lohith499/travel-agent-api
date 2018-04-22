@@ -5,7 +5,7 @@ class CreateVacations < ActiveRecord::Migration[5.1]
       t.string :Date
       t.string :Description
       t.integer :Budget
-      t.integer :Transport
+      t.integer :Transport,default: 2
       t.string :Image
       t.timestamps
     end
