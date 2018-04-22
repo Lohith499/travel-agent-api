@@ -21,24 +21,7 @@ end
 # POST /customers/:customer_id/vacations
 def create
 @cvacation=@customer.vacations.create!(vacation_params)
-
-list = @customer.vacations.create!(vacation_params)
-  if list.save
-    render json: {
-      status: 200,
-      message: json_response(@cvacation, :created),
-      todo_list: list
-    }.to_json
-  end
-  #
 json_response(@cvacation, :created)
-  #if @customer.vacations.create!(vacation_params)
-
-  #  else
-  #    json_response(@customer, :created)
-  #  end
-#@customer.vacations.create!(vacation_params)
-#json_response(@customer, :created)
 end
 # PUT /customers/:customer_id/vacations/:id
 def update
