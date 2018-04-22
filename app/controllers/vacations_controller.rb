@@ -14,18 +14,8 @@ def set_Transports
     @Transports = Vacation.Transports
   end
 
-  def set_issue_types
-    @issue_types = Vacation.issue_types
-  end
-
-  def set_priorities
-    @priorities = Vacation.priorities
-  end
-
 def convert_vacation_params
-  params[:priority]=params[:priority].to_i
-  params[:issue_type]=params[:issue_type].to_i
-  params[:status]=params[:status].to_i
+  params[:Transport]=params[:Transport].to_i
 end
 
 # POST /customers/:customer_id/vacations
@@ -42,10 +32,6 @@ def update
         json_response(@vacation, :update)
       end
   #head :no_content
-
-
- @vacation.update(vacation_params)
- head :no_content
 end
 # DELETE /customers/:customer_id/vacations/:id
 def destroy
