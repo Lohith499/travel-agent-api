@@ -1,42 +1,53 @@
 class CustomersController < ApplicationController
-  before_action :set_customer, only: [:show, :update, :destroy]
-  # GET /customers
-  def index
-    @customers = customer.all
-    json_response(@customers)
-  end
-  # POST /customers
-  def create
-    @customer = Customer.create!(customer_params)
-    json_response(@customer, :created)
-  end
-  # GET /customers/:id
-  def show
-    json_response(@customer)
-  end
-  # PUT /customers/:id
-  def update
-    #@customer.update(customer_params)
-    #head :no_content
-    @customer = Customer.find(params[:id])
-    if @customer.update_attributes(customer_params)
-      json_response(@customer, :update)
-    else
-      json_response(@customer, :update)
-    end
-  end
-  # DELETE /customers/:id
-  def destroy
-    @customer.destroy
-    head :no_content
-  end
-  private
-  def customer_params
-    # whitelist params
-    params.permit(:FirstName, :LastName, :Phone, :Address, :TravelAgent_email)
-  end
-  def set_customer
-    @customer = Customer.find(params[:id])
+before_action :set_customer
+before_action :set_Transports,:convert_vacation_params, :set_customer_vacation, only: [:show, :update, :destroy]
+# GET /customers/:customer_id/vacations
+def index
+json_response(@customer.vacations)
+end
+# GET /customers/:customer_id/vacations/:id
+def show
+json_response(@vacation)
+end
+def set_Transports
+    @Transports = Vacation.Transports
   end
 
+def convert_vacation_params
+  params[:Transport]=params[:Transport].to_i
+end
+
+# POST /customers/:customer_id/vacations
+def create
+@customer.vacations.create!(vacation_params)
+json_response(@vacation, :created)
+end
+# PUT /customers/:customer_id/vacations/:id
+def update
+  @vacation = @customer.vacations.find_by!(id: params[:id]) if @customer
+  if @vacation.update_attributes(vacation_params)
+    json_response(@vacation, :update)
+      else
+        json_response(@vacation, :update)
+      end
+# @vacation.update(vacation_params)
+ #head :no_content
+end
+# DELETE /customers/:customer_id/vacations/:id
+def destroy
+@vacation.destroy
+head :no_content
+end
+private
+
+def vacation_params
+params.permit(:title, :description, :issue_type, :priority, :status)
+end
+def set_customer
+@customer = Customer.find(params[:user_id])
+end
+
+def set_customer_vacation
+@vacation = @customer.vacations.find_by!(id: params[:id]) if @customer
+end
 end
