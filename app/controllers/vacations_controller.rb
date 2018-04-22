@@ -20,12 +20,12 @@ end
 
 # POST /customers/:customer_id/vacations
 def create
-
-  if @customer.vacations.create!(vacation_params)
-      json_response(@vacation)
-    else
-      json_response(@customer, :created)
-    end
+@cvacation=@customer.vacations.create!(vacation_params)
+  #if @customer.vacations.create!(vacation_params)
+      json_response(@cvacation, :created)
+  #  else
+  #    json_response(@customer, :created)
+  #  end
 #@customer.vacations.create!(vacation_params)
 #json_response(@customer, :created)
 end
