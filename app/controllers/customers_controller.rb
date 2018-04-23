@@ -20,10 +20,15 @@ class CustomersController < ApplicationController
   #@customer.update(customer_params)
   @customer = Customer.find(params[:id])
   if @customer.update_attributes(customer_params)
-    json_response(@customer, :updated)
+      render :json => @customer
       else
-        json_response(@customer, :updated)
+        render :json => { :errors => @customer.errors.full_messages }, :status => 422
       end
+
+    #json_response(@customer, :updated)
+    #  else
+    #    json_response(@customer, :updated)
+    #  end
   #head :no_content
   end
   # DELETE /customers/:id
