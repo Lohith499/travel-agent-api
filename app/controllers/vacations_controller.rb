@@ -4,7 +4,7 @@ before_action :set_customer
 before_action :set_Transports, :convert_vacation_params, :set_customer_vacation, only: [:show, :update, :destroy]
 # GET /customers/:customer_id/vacations
 def index
-json_response(@customer.vacations.sort_by { |st| st['id'].to_i })
+json_response(@customer.vacations.sort_by { |st| st['id'].to_i }..page(params[:page]).per(5))
 end
 # GET /customers/:customer_id/vacations/:id
 def show
