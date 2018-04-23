@@ -27,10 +27,14 @@ end
 def update
   @vacation = @customer.vacations.find_by!(id: params[:id]) if @customer
   if @vacation.update_attributes(vacation_params)
-    json_response(@vacation, :updated)
-      else
-        json_response(@vacation, :updated)
-      end
+    render :json => @vacation
+    else
+      render :json => { :errors => @vacation.errors.full_messages }, :status => 422
+    end
+    #json_response(@vacation, :updated)
+    #  else
+    #    json_response(@vacation, :updated)
+    #  end
   #head :no_content
 end
 # DELETE /customers/:customer_id/vacations/:id
