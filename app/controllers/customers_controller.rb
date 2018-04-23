@@ -20,9 +20,9 @@ class CustomersController < ApplicationController
   #@customer.update(customer_params)
   @customer = Customer.find(params[:id])
   if @customer.update_attributes(customer_params)
-    json_response(@customer, :update)
+    json_response(@customer, :updated)
       else
-        json_response(@customer, :update)
+        json_response(@customer, :updated)
       end
   #head :no_content
   end
