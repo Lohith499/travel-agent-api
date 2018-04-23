@@ -39,8 +39,13 @@ def update
 end
 # DELETE /customers/:customer_id/vacations/:id
 def destroy
-@vacation.destroy
-head :no_content
+#@vacation.destroy
+if @vacation.destroy
+  render :json => {:message => "Deleted Successfull"}, :status => 200
+  else
+    render :json => { :errors => @vacation.errors.full_messages }, :status => 422
+  end
+#head :no_content
 end
 private
 

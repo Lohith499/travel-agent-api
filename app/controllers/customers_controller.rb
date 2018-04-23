@@ -33,8 +33,12 @@ class CustomersController < ApplicationController
   end
   # DELETE /customers/:id
   def destroy
-  @customer.destroy
-  head :no_content
+  if @customer.destroy
+  render :json => {:message => "Deleted Successfull"}, :status => 200
+  else
+    render :json => { :errors => @customer.errors.full_messages }, :status => 422
+  end
+  #head :no_content
   end
   private
   def customer_params
