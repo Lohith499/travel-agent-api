@@ -4,7 +4,7 @@ class CustomersController < ApplicationController
   # GET /customers
   def index
     if params[:per_page] == 'all'
-      Customer.all.sort_by { |st| st['id'].to_i }
+      @customers =Customer.all.sort_by { |st| st['id'].to_i }
     else
       @customers =Kaminari.paginate_array(Customer.all.sort_by { |st| st['id'].to_i }).page(params[:page]).per(5)
     end
