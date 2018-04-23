@@ -3,7 +3,7 @@ class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :update, :destroy]
   # GET /customers
   def index
-  @customers = Customer.all.sort_by { |st| st['id'].to_i }.page(params[:page]).per(5)
+  @customers =Kaminari.paginate_array(Customer.all.sort_by { |st| st['id'].to_i }).page(params[:page]).per(5)
   json_response(@customers)
   end
   # POST /customers
