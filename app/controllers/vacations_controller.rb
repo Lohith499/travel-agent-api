@@ -55,7 +55,7 @@ end
 private
 
 def vacation_params
-params.permit(:Place, :Date, :Description, :Budget, :Transport, :Image)
+params.permit(:Place, :VacationDate, :Description, :Budget, :Transport, :Image)
 end
 def set_customer
 @customer = Customer.find(params[:customer_id])

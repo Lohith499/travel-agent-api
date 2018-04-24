@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20180422095638) do
 
   create_table "vacations", force: :cascade do |t|
     t.string "Place"
-    t.string "Date"
+    t.string "VacationDate"
     t.string "Description"
     t.integer "Budget"
     t.integer "Transport"
