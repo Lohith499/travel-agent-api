@@ -34,7 +34,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'kaminari'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
+gem 'rack-cors'
 gem 'pg', '~> 0.20'
 gem 'rails_12factor'
 # Use Capistrano for deployment
